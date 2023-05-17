@@ -1,7 +1,7 @@
 library(ggplot2)
 
 # Setup inicial
-setwd("/home/joaolscosta/PE-project/2ex")
+setwd("/home/gui_marc/Documents/IST/PE/PE-Project/2ex")
 
 # 1 - Ler o ficheiro e eliminar todos os dados referentes a África do Sul
 
@@ -23,6 +23,6 @@ dados_filtrados_remun <- subset(dados_ordenados, Ocupação == "Trabalho remuner
 
 # Gerar diagramas de extremos e quartis para os dados filtrados
 
+pdf("grafico.pdf")
 grafico <- boxplot(dados_filtrados_outros$Tempo, dados_filtrados_remun$Tempo, main = "Outros vs Trabalho remunerado ou estudo", ylab = "Tempo (minutos)")
-
-ggsave("grafico.pdf", plot = grafico)
+dev.off()
