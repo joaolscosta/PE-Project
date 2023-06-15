@@ -1,32 +1,22 @@
-# Definir a semente para reprodução dos resultados
 set.seed(2010)
 
-# Parâmetros
-mu <- 50.7  # Valor esperado
-sigma <- 2  # Desvio padrão
-n <- 21     # Tamanho da amostra
-m <- 300    # Número de amostras
+alpha <- 0.04 # nivel de significancia
+h0 <- 49.7 # nula
+h1 <- 50.7 # alternativa
+sigma <- 2 #desvio-padrao
+m <- 300 #amostras
+n <- 21 # dimensão
 
-# Amostras numa matrix
-amostras <- matrix(rnorm(n * m, mean = mu, sd = sigma), ncol = n)
+amostras <- matrix(rnorm(m * n, mean = h1, sd = sigma), linha = n)
 
-# Função de Teste de Hipóteses
-calc_teste_hipot <- function(amostra, nivel_significancia, hipotese_nula) {
-  t  <- (mean(amostra) - hipotese_nula) / (sd(amostra) / sqrt(length(amostra)))
-  p_valor <- 2 * pt(-abs(t_stat), df = length(amostra) - 1)
-  resultado <- ifelse(p_valor <= nivel_significancia, "Rejeitar H0", "Não rejeitar H0")
-  return(resultado)
+resultados <- numeric(m)
+
+for (i in 1:m) {
+  t_test <- t.test(amostras[, i], mu = h0) # ttest de uma das amostras
+  valorp <- t_test$p.value # extrai valor-p dessa amostra
+  resultados[i] <- ifelse(valorp > alpha, 1, 0) # verifica se se rejeita (1 para não rejeitar h0)
 }
 
-# Realizar o teste de hipóteses para cada amostra
-resultados <- apply(amostras, 1, calc_teste_hipot, nivel_significancia = 0.04, hipotese_nula = 49.7)
+prob_n_rejeicao <- mean(resultados)
 
-# Calcular a probabilidade de não rejeição de H0
-probabilidade_nao_rejeicao <- mean(resultados == "Não rejeitar H0")
-
-probabilidade_nao_rejeicao <- format(probabilidade_nao_rejeicao, digits = 3)
-
-# Imprimir a probabilidade
-print(paste("Probabilidade de não rejeição de H0:", probabilidade_nao_rejeicao))
-
-
+cat("Estimativa da probabilidade de não rejeição de H0:", round(prob_n_rejeicao, 3))
