@@ -24,7 +24,9 @@ resultados <- apply(amostras, 1, calc_teste_hipot, nivel_significancia = 0.04, h
 # Calcular a probabilidade de não rejeição de H0
 probabilidade_nao_rejeicao <- mean(resultados == "Não rejeitar H0")
 
+probabilidade_nao_rejeicao <- format(probabilidade_nao_rejeicao, digits = 3)
+
 # Imprimir a probabilidade
-print(paste("Probabilidade de não rejeição de H0:", format(probabilidade_nao_rejeicao, digits = 3)))
+print(paste("Probabilidade de não rejeição de H0:", probabilidade_nao_rejeicao))
 
 
