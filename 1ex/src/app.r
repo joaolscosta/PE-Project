@@ -1,12 +1,14 @@
 # Instale o pacote "readxl" se ainda não estiver instalado
 # install.packages("readxl")
+library(rio)
+
 library(readxl)
 # Instale o pacote "ggplot2" se ainda não estiver instalado
 # install.packages("ggplot2")
 library(ggplot2)
 
 # Leitura dos dados do arquivo econ.xlsx
-dados <- read_excel("~")
+dados <- import("https://web.tecnico.ulisboa.pt/~paulo.soares/pe/projeto/econ.xlsx")
 
 # Converter o campo de data para o formato correto (caso necessário)
 dados$tempo <- as.Date(dados$tempo)
