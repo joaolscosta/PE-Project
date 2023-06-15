@@ -6,7 +6,7 @@ library(readxl)
 library(ggplot2)
 
 # Leitura dos dados do arquivo econ.xlsx
-dados <- read_excel("/home/belchior/Downloads/econ.xlsx")
+dados <- read_excel("~")
 
 # Converter o campo de data para o formato correto (caso necessário)
 dados$tempo <- as.Date(dados$tempo)
@@ -32,5 +32,7 @@ grafico <- ggplot(dados_filtrados, aes(x = tempo)) +
   scale_color_manual(values = c("Duração Mediana do Desemprego" = "blue", "Número de Desempregados" = "red")) +
   theme_minimal()
 
+print(grafico)
+
 #Salvar em PDF
-ggsave("/home/belchior/classes/grafico.pdf", plot = grafico)
+# ggsave("/home/belchior/classes/grafico.pdf", plot = grafico)

@@ -37,7 +37,7 @@ calc_method_1 = function (X, n) {
   return(c(x1, x2))
 }
 
-lista_diferenças <- list()
+lista_diferencas <- list()
 # Calcular a diferença entre os metodos 1 e 2
 for (n in n_values) {
   X <- mean(amostras[[as.character(n)]])
@@ -56,10 +56,10 @@ for (n in n_values) {
   
   
   diferença <- abs(comp_m1 - comp_m2)
-  lista_diferenças[[as.character(n)]] <- diferença
+  lista_diferencas[[as.character(n)]] <- diferença
 } 
 
-diferenças <- unlist(lista_diferenças)
+diferenças <- unlist(lista_diferencas)
 media_diff <- mean(diferenças)
 
 df_diferencas <- data.frame(n = as.numeric(names(diferenças)),
@@ -70,5 +70,3 @@ grafico <- ggplot(df_diferencas, aes(x = n, y = diferenca)) +
   labs(x = "Tamanho da amostra (n)",
        y = "Diferença entre os comprimentos dos intervalos",
        title = "Diferença entre os comprimentos dos intervalos de confiança")
-
-print(grafico)

@@ -11,12 +11,9 @@ for (i in 1:m) {
   sample_sumsquares[i] <- sum(sample^2)  # Calcula a soma dos quadrados dos valores observados
 }
 
-
-#! Não sei se esta parte em diante está correta
 # Cálculo dos quantis de probabilidade 0.39
 quantile_sample <- quantile(sample_sumsquares, probs = 0.39, type = 2)  # Quantil amostral
 quantile_theoretical <- qchisq(0.39, df = n)  # Quantil teórico da distribuição qui-quadrado
-#!
 
 # Diferença em valor absoluto entre os quantis
 absolute_difference <- abs(quantile_sample - quantile_theoretical)
