@@ -20,3 +20,5 @@ for (i in 1:m) {
 prob_n_rejeicao <- mean(resultados)
 
 cat("Estimativa da probabilidade de não rejeição de H0:", round(prob_n_rejeicao, 3))
+
+# Resposta: 0.447
